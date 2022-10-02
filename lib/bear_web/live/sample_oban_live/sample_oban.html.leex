@@ -1,0 +1,35 @@
+
+<div class="flex items-center">
+    <button phx-click="add_toast" class="m-4 bg-orange-400 text-lg font-bold p-6 py-2 text-white shadow-md rounded">
+       Update Taxes
+    </button>
+  </div>
+
+<%= live_component Table, header: @tax_table_header, body: @registered_taxes %>
+
+<%= live_component Table %>
+
+<h1>Extraterrestrials</h1>
+<button phx-click="phone_home">Phone Home</button>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Attempt</th>
+      <th>Attempt timestamp</th>
+    </tr>
+  </thead>
+  <tbody id="registered_taxes">
+    <%= for tax <- @registered_taxes do %>
+      <tr id={"tax-#{tax.id}"}>
+        <td><%= tax.name %></td>
+        <td><%= tax.type %></td>
+        <td><%= tax.amount %></td>
+        <td><%= tax.status %></td>
+        <td><%= tax.attempt %></td>
+        <td><%= tax.last_attempt_timestamp %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
