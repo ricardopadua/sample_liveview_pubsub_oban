@@ -19,10 +19,12 @@ defmodule Bear.Tax do
     timestamps()
   end
 
-  def changeset(schema = %__MODULE__{}, attrs) do
+  def changeset(schema = %__MODULE__{}, attrs \\ %{}) do
     schema
     |> cast(attrs, @fields)
     |> validate_inclusion(:type, @allowed_types)
     |> validate_inclusion(:type, @allowed_status)
   end
+
+  def tax_status, do:  @allowed_status
 end

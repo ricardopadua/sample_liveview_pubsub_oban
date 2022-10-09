@@ -16,12 +16,10 @@ defmodule Bear do
   def get_tax(), do: Tax |> Repo.all()
   def get_tax!(id), do: Repo.get!(Tax, id)
 
-
-  @spec update_tax(:invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}) ::
-          any
-  def update_tax(attr) do
-    Tax.changeset(%Tax{}, attr)
-    |> Repo.update!()
+  def update_tax(tax, attr) do
+    tax
+    |> Ecto.Changeset.change(attr)
+    |> Repo.update!(force: true)
   end
 
 
